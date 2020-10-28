@@ -17,7 +17,9 @@ RUN apt update
 RUN apt install -y nginx php-fpm supervisor && \
     rm -rf /var/lib/apt/lists/* && \
     apt clean
-    
+
+
+
 # Define the ENV variable
 ENV nginx_vhost /etc/nginx/sites-available/default
 ENV php_conf /etc/php/7.4/fpm/php.ini
@@ -43,5 +45,6 @@ VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/v
 COPY start.sh /start.sh
 CMD ["./start.sh"]
 
+COPY welcome.html /var/www/html
 # Expose Port for the Application 
 EXPOSE 80 443
